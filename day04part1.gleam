@@ -107,10 +107,9 @@ fn update_bingo_positions(bc: BingoCard, index: Int, accum: BingoCard) {
 //------------- Running the game
 fn process_nums(nums: List(Int), bcs: List(BingoCard)) -> #(BingoCard, Int) {
   let assert [this_num, ..rest_nums] = nums
-  echo this_num
   let mbcs = mark_all_cards(bcs, this_num)
   let is_winning = check_any_winner(mbcs)
-  echo is_winning
+
   case is_winning {
     True -> #(get_winner(mbcs) |> rs.unwrap([]), this_num)
     False -> process_nums(rest_nums, mbcs)
